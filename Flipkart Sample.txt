@@ -1,0 +1,135 @@
+package selenium;
+
+import java.util.List;
+import java.util.Set;
+import java.util.concurrent.TimeUnit;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+public class Flipkart {
+
+	public static void main(String[] args) throws InterruptedException {
+		// TODO Auto-generated method stub
+
+System.setProperty("webdriver.chrome.driver","D:\\selinium\\chromedriver.exe");
+
+driver.manage().windows().maximize();
+
+WebDriver driver= new ChromeDriver(chromeoptions);
+
+WebDriverWait wait=new WebDriverWait(driver, 60) ;
+
+driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+
+driver.get("https://www.flipkart.com/");
+
+
+WebElement number= driver.findElement(By.xpath("/html/body/div[2]/div/div/div/div/div[2]/div/form/div[1]/input")); 
+number.sendKeys("9360938960");
+
+WebElement password= driver.findElement(By.xpath("//input[@type='password']"));
+password.sendKeys("Vanu@123");
+
+WebElement login= driver.findElement(By.xpath("//button[@type='submit'][@class='_2KpZ6l _2HKlqd _3AWRsL']"));
+login.click();
+
+
+WebElement SearchBar= wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//input[@name='q']")));
+
+SearchBar.sendKeys("HP Ryzen 3 Dual Core 3250U"+ Keys.ENTER);
+
+ 
+ String parentwindow=driver.getWindowHandle();
+ 
+ 
+WebElement Lap=wait.until(ExpectedConditions.elementToBeClickable(By.xpath("/html/body/div/div/div[3]/div[1]/div[2]/div[2]/div/div/div/a/div[2]/div[1]/div[1]")));
+
+Lap.click();
+ 
+   Set<String> childwindow=driver.getWindowHandles();
+	
+	for(String child:childwindow)
+	{
+		if(!child.equals(parentwindow))
+		{
+		 driver.switchTo().window(child);
+	     WebElement AddCart=driver.findElement(By.xpath("//button[@class='_2KpZ6l _2U9uOA _3v1-ww']"));
+	     AddCart.click();		
+	
+	     driver.close();
+		}
+	}
+		
+ driver.switchTo().window(parentwindow);
+ 
+WebElement  cl= driver.findElement(By.xpath("//input[@name='q']"));
+cl.sendKeys(Keys.chord(Keys.CONTROL,"a"));
+cl.sendKeys(Keys.BACK_SPACE);
+
+cl.sendKeys("SAMSUNG Galaxy F22"+ Keys.ENTER);
+
+	 
+	 String parentwindow1=driver.getWindowHandle();
+	 
+ WebElement pick1= wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id=\'container\']/div/div[3]/div[1]/div[2]/div[3]/div/div/div/a/div        [2]/div[1]/div[1]")));
+         pick1.click();	
+ 
+	 Set<String> childwindow2=driver.getWindowHandles();
+		
+		for(String child:childwindow2)
+		{
+			if(!child.equals(parentwindow1))
+			{
+				driver.switchTo().window(child);
+				WebElement AddCart1=driver.findElement(By.xpath("//*[@id=\'container\']/div/div[3]/div[1]/div[1]/div[2]/div/ul/li[1]/button"));
+				AddCart1.click();	
+				Thread.sleep(3000);
+				
+				JavascriptExecutor je=(JavascriptExecutor)driver;
+				
+				je.executeScript("window.scrollBy(0,20000)");	
+				
+				
+				
+			WebElement  Remove= driver.findElement(By.xpath("//*[@id=\'container\']/div/div[2]/div/div/div[1]/div/div[3]/div/div[3]/div[2]/di[2]"));
+				Remove.click();	
+				
+				WebElement Accept =driver.findElement(By.xpath("//*[@id=\'container\']/div/div[1]/div/div[3]/div/div[2]"));
+				Accept.click();	
+				
+				
+				
+				je.executeScript("window.scrollBy(0,20000)");
+				driver.close(); 
+			}
+		}
+
+		driver.switchTo().window(parentwindow1);
+	WebElement a3=	driver.findElement(By.xpath("//*[@id='container']/div/div[1]/div[1]/div[2]/div[6]/div/div/a/span"));
+	a3.click();	
+		
+	WebElement myaccount =driver.findElement(By.xpath("//*[@id='container']/div/div[1]/div[1]/div[2]/div[3]/div/div/div/div"));
+	myaccount.click();	
+		
+	Actions act=new Actions(driver);
+		
+		act.moveToElement(myaccount).build().perform();
+		
+	WebElement logout=	driver.findElement(By.xpath("//*[@id='container']/div/div[1]/div[1]/div[2]/div[3]/div/div/div[2]/div[2]/div/ul/li[10]/a"));
+	logout.click();
+			
+		
+		
+ driver.quit(); 
+	
+	}
+}
