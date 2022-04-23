@@ -54,7 +54,7 @@ cl.sendKeys(Keys.BACK_SPACE);
 cl.sendKeys("SAMSUNG Galaxy F22"+ Keys.ENTER);	 
  String parentwindow1=driver.getWindowHandle();
 	 
- WebElement pick1= wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id=\'container\']/div/div[3]/div[1]/div[2]/div[3]/div/div/div/a/div        [2]/div[1]/div[1]")));
+ WebElement pick1= wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id=\'container\']/div/div[3]/div[1]/div[2]/div[3]/div/div/div/a/div [2]/div[1]/div[1]")));
          pick1.click();	
  
 	 Set<String> childwindow2=driver.getWindowHandles();
